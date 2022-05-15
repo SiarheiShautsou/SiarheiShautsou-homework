@@ -1,5 +1,6 @@
 package com.sheva.domain;
 
+import com.sheva.exception.CarNotFoundException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -131,5 +132,16 @@ public class Car implements CarMoveInterface, Comparable<Car>{
     @Override
     public int compareTo(Car car) {
         return (this.seats - car.seats);
+    }
+
+    public String findCars(String name, Car[] c) {
+        for (int i = 0; i < c.length; i++) {
+            if (name == c[i].getCarBrand()) {
+                System.out.println(c);
+            } else {
+                new CarNotFoundException("error", "object not exist");
+            }
+        }
+        return name;
     }
 }

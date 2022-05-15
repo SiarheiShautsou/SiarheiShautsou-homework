@@ -1,9 +1,9 @@
 package com.sheva.domain;
 
+import com.sheva.exception.CarNotFoundException;
 import com.sheva.util.CarGenerator;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,6 +43,19 @@ public class Main {
             carSpeed += 5;
             routeHours += 1;
 
+
+        }
+
+        System.out.println("CarNotFoundException test in array of cars.");
+
+        try{
+            Car car1 = new Car();
+
+            car1.findCars("Tesla", carArray);
+
+        }catch(CarNotFoundException e){}
+        finally {
+            System.out.println("There aren't such cars in the array");
 
         }
 
