@@ -1,21 +1,40 @@
 package com.sheva.domain;
 
-import com.sheva.exception.CarNotFoundException;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Objects;
 
-public class Car implements CarMoveInterface, Comparable<Car>{
+import static com.sheva.domain.DefaultCarInfo.*;
 
-    private String carBrand = "Cupra";
-    private String carModel = "Leon";
-    private String bodyType = "hatchback";
-    private int doors = 5;
-    private int seats = 5;
-    private double engineVolume = 2.0;
-    private String fuelType = "petrol";
+public class Car implements CarMoveInterface, Comparable<Car> {
+
+    public static final int DEFAULT_CAR_DOORS = 4;
+
+    public static final int DEFAULT_CAR_SEATS = 5;
+
+    public static final double DEFAULT_CAR_ENGINE_VOLUME = 2.0;
+
+    private String carBrand;
+
+    private String carModel;
+
+    private String bodyType;
+
+    private Integer doors;
+
+    private Integer seats;
+
+    private Double engineVolume;
+
+    private String fuelType;
 
     public Car() {
+        this.carBrand = defaultCarBrand;
+        this.carModel = defaultCarModel;
+        this.bodyType = defaultCarBodyType;
+        this.doors = DEFAULT_CAR_DOORS;
+        this.seats = DEFAULT_CAR_SEATS;
+        this.engineVolume = DEFAULT_CAR_ENGINE_VOLUME;
+        this.fuelType = defaultCarFuelType;
+
     }
 
     public Car(String carBrand, String carModel, String bodyType, int doors, int seats, double engineVolume, String fuelType) {
@@ -99,15 +118,7 @@ public class Car implements CarMoveInterface, Comparable<Car>{
 
     @Override
     public String toString() {
-        return "Car{" +
-                "carBrand='" + carBrand + '\'' +
-                ", carModel='" + carModel + '\'' +
-                ", bodyType='" + bodyType + '\'' +
-                ", doors=" + doors +
-                ", seats=" + seats +
-                ", engineVolume=" + engineVolume +
-                ", fuelType='" + fuelType + '\'' +
-                '}';
+        return "Car{" + "carBrand='" + carBrand + '\'' + ", carModel='" + carModel + '\'' + ", bodyType='" + bodyType + '\'' + ", doors=" + doors + ", seats=" + seats + ", engineVolume=" + engineVolume + ", fuelType='" + fuelType + '\'' + '}';
     }
 
     @Override
@@ -134,14 +145,4 @@ public class Car implements CarMoveInterface, Comparable<Car>{
         return (this.seats - car.seats);
     }
 
-    public String findCars(String name, Car[] c) {
-        for (int i = 0; i < c.length; i++) {
-            if (name == c[i].getCarBrand()) {
-                System.out.println(c);
-            } else {
-                new CarNotFoundException("error", "object not exist");
-            }
-        }
-        return name;
-    }
 }
